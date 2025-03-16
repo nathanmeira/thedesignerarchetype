@@ -3,11 +3,5 @@
 </script>
 
 <template>
-  <div class="flex justify-center items-center h-screen">
-    <h1 class="text-6xl font-semibold text-zinc-800">The Designer Archetype</h1>
-  </div>
+  <h1 class="text-4xl">Home</h1>
 </template>
-
-<style scoped>
-
-</style>
