@@ -6,16 +6,16 @@
         <Icon class="bg-zinc-100" :name="isMenuOpen ? 'material-symbols:close' : 'charm:menu-hamburger'"/>
       </button>
       <div
-          class="lg:flex flex-col lg:flex-row gap-10 text-xl absolute lg:relative top-[4.75rem] lg:top-0 left-0 w-full lg:w-auto bg-zinc-100 lg:p-0 h-screen"
+          class="lg:flex flex-col lg:flex-row gap-10 text-xl text-zinc-100 absolute lg:relative top-[4.75rem] lg:top-0 left-0 w-full lg:w-auto bg-zinc-800 lg:p-0 lg:bg-transparent lg:gap-10 lg:items-center lg:justify-end"
           :class="isMenuOpen? '' : 'hidden'"
       >
-        <nuxt-link to="/" class="hover:bg-zinc-200 block py-2 px-4 lg:inline" @click="toggleMenu">Home</nuxt-link>
+        <nuxt-link to="/" class="hover:text-zinc-300 block py-2 px-4 lg:inline" @click="toggleMenu">Home</nuxt-link>
         <hr>
-        <nuxt-link to="/about" class="hover:bg-zinc-200 block py-2 px-4 lg:inline" @click="toggleMenu">About</nuxt-link>
+        <nuxt-link to="/about" class="hover:text-zinc-300 block py-2 px-4 lg:inline" @click="toggleMenu">About</nuxt-link>
         <hr>
-        <nuxt-link to="/quiz" class="hover:bg-zinc-200 block py-2 px-4 lg:inline" @click="toggleMenu">Quiz</nuxt-link>
+        <nuxt-link to="/quiz" class="hover:text-zinc-300 block py-2 px-4 lg:inline" @click="toggleMenu">Quiz</nuxt-link>
         <hr>
-        <nuxt-link to="/contact" class="hover:bg-zinc-200 block py-2 px-4 lg:inline" @click="toggleMenu">Contact</nuxt-link>
+        <nuxt-link to="/contact" class="hover:text-zinc-300 block py-2 px-4 lg:inline" @click="toggleMenu">Contact</nuxt-link>
       </div>
     </div>
   </nav>
