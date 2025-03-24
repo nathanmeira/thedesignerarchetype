@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <h1 class="text-4xl">Quiz</h1>
+  <h1 class="text-4xl p-4 font-semibold">Quiz</h1>
 </template>
 
 <style scoped>
