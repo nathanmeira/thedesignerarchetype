@@ -136,7 +136,7 @@ const calculateResult = () => {
     if (value !== null) counts[value - 1]++;
   });
   const maxIndex = counts.indexOf(Math.max(...counts));
-  return maxIndex + 1; // Return 1-4 (instead of "Minimalist", "Visionary", etc.)
+  return maxIndex + 1;
 };
 
 const submitQuiz = () => {
