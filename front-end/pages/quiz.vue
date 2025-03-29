@@ -98,7 +98,7 @@ const questions = ref([
 const currentQuestionIndex = ref(0);
 const answers = ref<Array<number | null>>(new Array(questions.value.length).fill(null));
 const isQuizCompleted = ref(false);
-const result = ref<string | null>(null);
+const result = ref<number | undefined>(undefined);
 
 onMounted(() => {
   const storedAnswers = localStorage.getItem('quizAnswers');
@@ -136,7 +136,7 @@ const calculateResult = () => {
     if (value !== null) counts[value - 1]++;
   });
   const maxIndex = counts.indexOf(Math.max(...counts));
-  return archetypes[maxIndex];
+  return maxIndex + 1; // Return 1-4 (instead of "Minimalist", "Visionary", etc.)
 };
 
 const submitQuiz = () => {
@@ -158,9 +158,9 @@ const retakeQuiz = () => {
 
 <template>
   <div class="max-w-6xl mx-auto px-4 py-8">
-    <h1 class="text-4xl font-semibold mb-6">Designer Archetype Quiz</h1>
 
     <div v-if="!isQuizCompleted" class="w-full md:w-2/3 mx-auto">
+      <h1 class="text-4xl font-semibold mb-6">Designer Archetype Quiz</h1>
       <div v-if="currentQuestionIndex < questions.length" class="mb-6">
         <p class="text-xl font-semibold mb-4">{{ questions[currentQuestionIndex].question }}</p>
         <div class="flex flex-col gap-4">
@@ -206,9 +206,9 @@ const retakeQuiz = () => {
 
     <div v-if="isQuizCompleted" class="w-full md:w-2/3 mx-auto text-center">
       <h2 class="text-3xl font-semibold mb-4">Your Archetype</h2>
-      <p class="text-xl mb-6">You are a <strong>{{ result }}</strong>!</p>
+      <QuizResult :result="result" />
       <button
-          class="bg-zinc-600 text-zinc-100 py-2 px-6 rounded-lg hover:bg-zinc-500"
+          class="bg-zinc-600 text-zinc-100 mt-4 py-2 px-6 rounded-lg hover:bg-zinc-500"
           @click="retakeQuiz"
       >
         Retake the Quiz
