@@ -5,10 +5,11 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       supabaseUrl: process.env.NUXT_PUBLIC_SUPABASE_URL,
-      supabaseAnonKey: process.env.NUXT_PUBLIC_SUPABASE_ANON_KEY
+      supabaseAnonKey: process.env.NUXT_PUBLIC_SUPABASE_ANON_KEY,
+      PIXABAY_API_KEY: process.env.NUXT_PUBLIC_PIXABAY_API_KEY
     },
     private: {
-      supabaseServiceKey: process.env.SUPABASE_SERVICE_ROLE_KEY
+      supabaseServiceKey: process.env.SUPABASE_SERVICE_ROLE_KEY,
     }
   },
   modules: [

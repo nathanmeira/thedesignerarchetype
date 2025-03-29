@@ -6,7 +6,7 @@
         <Icon class="bg-zinc-100" :name="isMenuOpen ? 'material-symbols:close' : 'charm:menu-hamburger'"/>
       </button>
       <div
-          class="lg:flex flex-col lg:flex-row gap-10 text-xl text-zinc-100 absolute lg:relative top-[4.75rem] lg:top-0 left-0 w-full lg:w-auto bg-zinc-800 lg:p-0 lg:bg-transparent lg:gap-10 lg:items-center lg:justify-end transition-all"
+          class="lg:flex flex-col lg:flex-row gap-10 text-xl text-zinc-100 absolute lg:relative top-[4.75rem] lg:top-0 left-0 w-full lg:w-auto bg-zinc-800 lg:p-0 lg:bg-transparent lg:gap-10 lg:items-center lg:justify-end transition-all z-10"
           :class="isMenuOpen? '' : 'hidden'"
       >
         <nuxt-link to="/" class="hover:text-zinc-300 block py-2 px-4 lg:inline" @click="toggleMenu">Home</nuxt-link>

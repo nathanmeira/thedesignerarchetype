@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-
 const archetypes = ['Minimalist', 'Visionary', 'Empath', 'Perfectionist'];
 const questions = ref([
   {
@@ -101,6 +100,7 @@ const isQuizCompleted = ref(false);
 const result = ref<number | undefined>(undefined);
 
 onMounted(() => {
+  fetchImage();
   const storedAnswers = localStorage.getItem('quizAnswers');
   if (storedAnswers) {
     answers.value = JSON.parse(storedAnswers);
@@ -117,6 +117,7 @@ const storeProgress = () => {
 };
 
 const nextQuestion = () => {
+  fetchImage();
   if (currentQuestionIndex.value < questions.value.length - 1) {
     currentQuestionIndex.value++;
     storeProgress();
@@ -124,6 +125,7 @@ const nextQuestion = () => {
 };
 
 const previousQuestion = () => {
+  fetchImage();
   if (currentQuestionIndex.value > 0) {
     currentQuestionIndex.value--;
     storeProgress();
@@ -154,20 +156,59 @@ const retakeQuiz = () => {
   localStorage.removeItem('quizAnswers');
   localStorage.removeItem('currentQuestionIndex');
 };
+
+const imageUrl = ref<string>('');
+const searchQuery = 'graphic+design+aesthetic';
+
+const fetchImage = async () => {
+  try {
+    const response = await fetch(
+        `https://pixabay.com/api/?key=49594379-012d4d518d6e15db8bb8f153d&q=${searchQuery}&image_type=photo&per_page=40&orientation=horizontal`
+    );
+    const data = await response.json();
+
+    if (data.hits && data.hits.length > 0) {
+      const randomIndex = Math.floor(Math.random() * data.hits.length);
+      imageUrl.value = data.hits[randomIndex].webformatURL;
+    } else {
+      console.error('No images found');
+    }
+  } catch (error) {
+    console.error('Error fetching image:', error);
+  }
+};
+
+
 </script>
 
 <template>
   <div class="max-w-6xl mx-auto px-4 py-8">
 
     <div v-if="!isQuizCompleted" class="w-full md:w-2/3 mx-auto">
+      <div class="mb-4">
+        <div class="bg-zinc-50 border-1 h-2 relative rounded-full">
+          <div
+              class="bg-zinc-600 h-2 absolute rounded-full"
+              :style="{ width: `${(currentQuestionIndex + 1) / questions.length * 100}%` }"
+          >
+          </div>
+        </div>
+        Question {{ currentQuestionIndex + 1 }} of {{ questions.length }}
+      </div>
       <h1 class="text-4xl font-semibold mb-6">Designer Archetype Quiz</h1>
       <div v-if="currentQuestionIndex < questions.length" class="mb-6">
+        <img
+            v-if="imageUrl"
+            :src="imageUrl"
+            alt="Random graphic design aesthetic"
+            class="mt-4 w-full h-56 object-cover mb-4"
+        />
         <p class="text-xl font-semibold mb-4">{{ questions[currentQuestionIndex].question }}</p>
         <div class="flex flex-col gap-4">
           <div
               v-for="(option, index) in questions[currentQuestionIndex].options"
               :key="index"
-              class="flex justify-between items-center rounded-lg p-3 cursor-pointer hover:bg-zinc-700"
+              class="flex justify-between items-center rounded-lg p-3 cursor-pointer hover:bg-zinc-500"
               :class="{
                 'bg-zinc-800': answers[currentQuestionIndex] !== option.value,
                 'bg-zinc-500': answers[currentQuestionIndex] === option.value
