@@ -185,6 +185,7 @@ const fetchImage = async () => {
   <div class="max-w-6xl mx-auto px-4 py-8">
 
     <div v-if="!isQuizCompleted" class="w-full md:w-2/3 mx-auto">
+      <h1 class="text-4xl font-semibold mb-6">Designer Archetype Quiz</h1>
       <div class="mb-4">
         <div class="bg-zinc-50 border-1 h-2 relative rounded-full">
           <div
@@ -195,7 +196,6 @@ const fetchImage = async () => {
         </div>
         Question {{ currentQuestionIndex + 1 }} of {{ questions.length }}
       </div>
-      <h1 class="text-4xl font-semibold mb-6">Designer Archetype Quiz</h1>
       <div v-if="currentQuestionIndex < questions.length" class="mb-6">
         <img
             v-if="imageUrl"
@@ -208,7 +208,7 @@ const fetchImage = async () => {
           <div
               v-for="(option, index) in questions[currentQuestionIndex].options"
               :key="index"
-              class="flex justify-between items-center rounded-lg p-3 cursor-pointer hover:bg-zinc-500"
+              class="flex justify-between items-center rounded-lg p-3 cursor-pointer text-md hover:bg-zinc-500"
               :class="{
                 'bg-zinc-800': answers[currentQuestionIndex] !== option.value,
                 'bg-zinc-500': answers[currentQuestionIndex] === option.value
@@ -216,6 +216,12 @@ const fetchImage = async () => {
               @click="answers[currentQuestionIndex] = option.value"
           >
             <p class="text-zinc-100 text-lg">{{ option.text }}</p>
+            <icon
+                v-if="answers[currentQuestionIndex] === option.value"
+                name="material-symbols:check-circle"
+                size="2em"
+                class="bg-white"
+            />
           </div>
         </div>
       </div>
@@ -223,14 +229,14 @@ const fetchImage = async () => {
       <div class="flex justify-between mt-6">
         <button
             :disabled="currentQuestionIndex < 1"
-            class="bg-zinc-600 text-zinc-100 py-2 px-6 rounded-lg hover:bg-zinc-500"
+            class="bg-zinc-500 text-zinc-100 py-2 px-6 rounded-lg hover:bg-zinc-500"
             @click="previousQuestion"
         >
           Back
         </button>
         <button
             v-if="currentQuestionIndex < questions.length - 1"
-            class="bg-zinc-600 text-zinc-100 py-2 px-6 rounded-lg hover:bg-zinc-500"
+            class="bg-zinc-800 text-zinc-100 py-2 px-6 rounded-lg hover:bg-zinc-500"
             @click="nextQuestion"
         >
           Next

@@ -26,7 +26,7 @@
           <textarea name="message" placeholder="Your Message" class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-zinc-500" rows="6" required></textarea>
         </div>
 
-        <button type="submit" class="w-full px-6 py-3 bg-zinc-800 text-white rounded-md shadow-md hover:bg-zinc-700 focus:ring-4 focus:ring-zinc-500">Submit</button>
+        <button type="submit" class="w-full px-6 py-3 bg-zinc-800 text-white text-md font-semibold rounded-md shadow-md hover:bg-zinc-700 focus:ring-4 focus:ring-zinc-500">Submit</button>
       </form>
     </div>
   </div>
