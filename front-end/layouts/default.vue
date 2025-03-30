@@ -27,6 +27,10 @@ export default {
         { property: 'og:image:alt', content: 'Discover your designer archetype' },
         { property: 'og:type', content: 'website' },
         { property: 'og:url', content: window.location.href },
+      ],
+      link: [
+        { rel: 'icon', type: 'image/png', href: '/favicon.png' },
+        { rel: 'apple-touch-icon', href: '/favicon.png' },
       ]
     };
   }
