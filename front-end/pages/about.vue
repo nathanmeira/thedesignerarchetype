@@ -33,6 +33,11 @@
         The process of building this was also an exploration of both technology and design thinking.
         From defining the archetypes to developing the front-end and setting up the back-end, every step was an opportunity to learn, experiment, and refine.
       </p>
+      <div class="my-5 flex items-center justify-center gap-x-6">
+        <router-link to="/contact" class="rounded-md bg-zinc-800 px-3.5 py-2.5 text-md font-semibold text-white shadow-xs hover:bg-zinc-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-600">
+          Get in touch
+        </router-link>
+      </div>
     </div>
     <hr class="w-full md:w-2/3 bg-zinc-600">
     <div class="w-full md:w-2/3 mx-auto">
@@ -44,7 +49,7 @@
         <p class="bg-zinc-800 rounded-full px-4 py-1 text-zinc-100 text-sm md:text-base">Project manager</p>
       </div>
     </div>
-    <div class="w-full md:w-2/3 mx-auto">
+    <div class="w-full md:w-2/3 mx-auto mb-4">
       <h3 class="text-2xl font-semibold mb-4">Stack</h3>
       <div class="flex flex-wrap gap-4 items-center">
         Nuxt.js <icon name="logos:nuxt-icon" title="Nuxt.js" />
