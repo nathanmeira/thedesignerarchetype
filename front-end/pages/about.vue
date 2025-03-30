@@ -39,8 +39,8 @@
         </router-link>
       </div>
     </div>
-    <hr class="w-full md:w-2/3 bg-zinc-600">
-    <div class="w-full md:w-2/3 mx-auto">
+    <hr class="w-full md:w-2/3 bg-zinc-600 mb-4">
+    <div class="w-full md:w-2/3 mx-auto mb-4">
       <h3 class="text-2xl font-semibold mb-4">Roles</h3>
       <div class="flex flex-wrap gap-2">
         <p class="bg-zinc-800 rounded-full px-4 py-1 text-zinc-100 text-sm md:text-base">Front-end developer</p>
@@ -57,6 +57,16 @@
         TypeScript <icon name="logos:typescript-icon-round" title="TypeScript" />
         TailwindCSS <icon name="logos:tailwindcss-icon" title="TailwindCSS" />
         Supabase <icon name="logos:supabase-icon" title="Supabase" />
+      </div>
+    </div>
+    <div class="w-full md:w-2/3 mx-auto mb-4">
+      <h3 class="text-2xl font-semibold mb-4">About the algorithm</h3>
+      <div class="flex flex-wrap gap-2">
+        <p>
+          The Designer Archetype quiz is based on a simple algorithm that calculates your creative identity based on your answers.
+          Each answer is assigned a value corresponding to one of four archetypes. As you progress, the system adds up the values for each archetype.
+          Once all questions are answered, it identifies the archetype with the highest score, providing you with a result that reflects your design tendencies.
+        </p>
       </div>
     </div>
   </div>
