@@ -30,45 +30,61 @@
       </div>
     </div>
 
+    <!-- Archetype Results Section -->
     <div class="px-6 py-16 sm:px-6 lg:px-8">
       <div class="mx-auto max-w-6xl">
         <h3 class="text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl text-center">
-          See How Others Are Scoring
+          Scoreboard
         </h3>
 
-        <!-- Mock Data Section: Archetypes Ranking -->
-        <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div class="bg-white p-6 rounded-lg shadow-lg">
-            <h4 class="text-xl font-semibold text-gray-900">Minimalist</h4>
-            <p class="mt-4 text-gray-700">1000 votes</p>
-            <div class="mt-4 bg-zinc-200 rounded-full h-4">
-              <div class="bg-zinc-800 h-4 rounded-full" style="width: 50%"></div>
-            </div>
-          </div>
-          <div class="bg-white p-6 rounded-lg shadow-lg">
-            <h4 class="text-xl font-semibold text-gray-900">Visionary</h4>
-            <p class="mt-4 text-gray-700">850 votes</p>
-            <div class="mt-4 bg-zinc-200 rounded-full h-4">
-              <div class="bg-zinc-800 h-4 rounded-full" style="width: 45%"></div>
-            </div>
-          </div>
-          <div class="bg-white p-6 rounded-lg shadow-lg">
-            <h4 class="text-xl font-semibold text-gray-900">Empath</h4>
-            <p class="mt-4 text-gray-700">750 votes</p>
-            <div class="mt-4 bg-zinc-200 rounded-full h-4">
-              <div class="bg-zinc-800 h-4 rounded-full" style="width: 40%"></div>
-            </div>
-          </div>
-          <div class="bg-white p-6 rounded-lg shadow-lg">
-            <h4 class="text-xl font-semibold text-gray-900">Perfectionist</h4>
-            <p class="mt-4 text-gray-700">500 votes</p>
-            <div class="mt-4 bg-zinc-200 rounded-full h-4">
-              <div class="bg-zinc-800 h-4 rounded-full" style="width: 25%"></div>
+        <!-- Cards for Archetypes -->
+        <div v-if="archetypeResults.length" class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div v-for="(result, index) in archetypeResults" :key="index" class="bg-white p-6 rounded-lg shadow-lg">
+            <h4 class="text-xl font-semibold text-gray-900">{{ result.archetype }}</h4>
+            <div class="mt-4 bg-zinc-200 rounded-full h-6">
+              <div class="bg-zinc-800 text-white pl-1 h-6 rounded-full" :style="{ width: result.percentage + '%' }">{{ `${result.percentage.toFixed(1)}%` }}</div>
             </div>
           </div>
         </div>
+        <div v-else class="mt-8 text-gray-500">
+          No data available for archetype results yet.
+        </div>
+      </div>
+    </div>
+
+    <!-- Time-Based Data Section -->
+    <div class="px-4 py-4 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-6xl text-center">
+        <p class="text-lg text-gray-700">In the last hour, {{ recentTestTakers }} people took the quiz!</p>
       </div>
     </div>
 
   </div>
 </template>
+
+<script setup>
+import { ref, onMounted } from 'vue';
+
+const archetypeResults = ref([]);
+const recentTestTakers = ref(0);
+
+const fetchQuizResults = async () => {
+  try {
+    const response = await $fetch('/api/quizResults');
+    console.log(response); // Log the response
+    if (response.archetypeResults) {
+      archetypeResults.value = response.archetypeResults;
+    }
+    if (response.recentTestTakers) {
+      recentTestTakers.value = response.recentTestTakers;
+    }
+  } catch (error) {
+    console.error('Error fetching quiz results:', error);
+  }
+};
+
+
+onMounted(() => {
+  fetchQuizResults();
+});
+</script>

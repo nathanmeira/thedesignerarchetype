@@ -2,11 +2,10 @@
 </script>
 
 <template>
-  <h1 class="text-4xl p-4 font-semibold">Contact Us</h1>
+  <h1 class="text-4xl p-4 font-semibold">Get in touch!</h1>
   <div class="w-full md:w-2/3 p-4 text-center">
     <p>
-      Have questions or feedback?
-      I’d love to hear from you! Whether you’re interested in learning more about the project, have suggestions, or just want to connect, feel free to reach out.
+      Have questions or feedback? I’d love to hear from you! Whether you’re interested in learning more about the project, have suggestions, or just want to connect, feel free to reach out.
     </p>
   </div>
 
@@ -29,6 +28,16 @@
         <button type="submit" class="w-full px-6 py-3 bg-zinc-800 text-white text-md font-semibold rounded-md shadow-md hover:bg-zinc-700 focus:ring-4 focus:ring-zinc-500">Submit</button>
       </form>
     </div>
+  </div>
+
+  <div class="flex flex-col justify-center items-center gap-6 mt-8">
+    <p class="text-lg text-gray-700">You can also find me on:</p>
+    <a href="https://github.com/nathanmeira" target="_blank" class="flex items-center gap-2 text-zinc-800 hover:text-zinc-600 underline">
+      <Icon name="logos:github-icon" />GitHub
+    </a>
+    <a href="https://www.linkedin.com/in/nathan-m/" target="_blank" class="flex items-center gap-2 text-zinc-800 hover:text-zinc-600 underline">
+      <Icon name="logos:linkedin-icon" />LinkedIn
+    </a>
   </div>
 </template>
 

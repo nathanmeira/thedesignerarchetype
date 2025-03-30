@@ -141,12 +141,39 @@ const calculateResult = () => {
   return maxIndex + 1;
 };
 
-const submitQuiz = () => {
+const submitQuiz = async () => {
   result.value = calculateResult();
   isQuizCompleted.value = true;
   localStorage.removeItem('quizAnswers');
   localStorage.removeItem('currentQuestionIndex');
+
+  const userAnswers = JSON.stringify(answers.value);
+  const archetype = archetypes[result.value - 1];
+
+  await saveQuizResults(archetype, userAnswers);
 };
+
+const saveQuizResults = async (archetype: string, score: string) => {
+  try {
+    const response = await fetch('/api/saveQuizResults', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ archetype, score })
+    });
+
+    const data = await response.json();
+    if (data.success) {
+      console.log('Quiz results saved successfully!');
+    } else {
+      console.error('Failed to save results');
+    }
+  } catch (error) {
+    console.error('Error saving quiz results:', error);
+  }
+};
+
 
 const retakeQuiz = () => {
   answers.value = new Array(questions.value.length).fill(null);
