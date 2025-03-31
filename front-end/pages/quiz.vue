@@ -281,6 +281,10 @@ const fetchImage = async () => {
     <div v-if="isQuizCompleted" class="w-full md:w-2/3 mx-auto text-center">
       <h2 class="text-3xl font-semibold mb-4">Your Archetype</h2>
       <QuizResult :result="result" />
+      <p class="my-4 text-sm text-gray-500 cursor-pointer">
+        If you want to learn more about the quiz algorithm, visit the
+        <router-link to="/about" class="underline hover:text-zinc-700">About page</router-link>.
+      </p>
       <button
           class="bg-zinc-600 text-zinc-100 mt-4 py-2 px-6 rounded-lg hover:bg-zinc-500"
           @click="retakeQuiz"

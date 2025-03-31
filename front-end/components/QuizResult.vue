@@ -5,13 +5,9 @@
     <div class="p-4">
       <h5 class="my-2 text-2xl font-bold tracking-tight text-gray-900">{{ resultTitle }}</h5>
       <p class="mb-3 font-normal text-gray-700">{{ resultMessage }}</p>
-      <p class="my-4 text-sm text-gray-500 cursor-pointer">
-        If you want to learn more about the quiz algorithm, visit the
-        <router-link to="/about" class="underline hover:text-zinc-700">About page</router-link>.
-      </p>
       <button
           @click="shareOnLinkedIn"
-          class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 my-4 transition">
+          class="bg-blue-600 text-white w-full px-4 py-2 rounded-lg hover:bg-blue-700 my-4 transition">
         Share on LinkedIn
       </button>
     </div>
