@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import NavbarMenu from "~/components/NavbarMenu.vue";
 import { Analytics } from '@vercel/analytics/nuxt';
+import { SpeedInsights } from "@vercel/speed-insights/nuxt"
 
 </script>
 
@@ -10,4 +11,5 @@ import { Analytics } from '@vercel/analytics/nuxt';
     <slot />
   </div>
   <Analytics />
+  <SpeedInsights />
 </template>
