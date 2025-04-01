@@ -190,7 +190,7 @@ const searchQuery = 'graphic+design+aesthetic';
 const fetchImage = async () => {
   try {
     const response = await fetch(
-        `https://pixabay.com/api/?key=49594379-012d4d518d6e15db8bb8f153d&q=${searchQuery}&image_type=photo&per_page=40&orientation=horizontal`
+        `https://pixabay.com/api/?key=49594379-012d4d518d6e15db8bb8f153d&q=${searchQuery}&safesearch=true&image_type=photo&per_page=40&orientation=horizontal`
     );
     const data = await response.json();
 
