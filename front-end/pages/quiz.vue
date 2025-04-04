@@ -15,72 +15,72 @@ const questions = ref([
     question: "How do you respond to feedback?",
     options: [
       { text: "Simplify the design to align with feedback.", value: 1 },
-      { text: "Use it as inspiration to innovate further.", value: 2 },
       { text: "Adjust to better meet the user’s needs.", value: 3 },
       { text: "Reassess every element for absolute precision.", value: 4 },
+      { text: "Use it as inspiration to innovate further.", value: 2 },
     ]
   },
   {
     question: "Which design principle resonates with you most?",
     options: [
-      { text: "Less is more.", value: 1 },
+      { text: "Perfection lies in the details.", value: 4 },
       { text: "Break the rules to find something new.", value: 2 },
       { text: "Design for people, not just products.", value: 3 },
-      { text: "Perfection lies in the details.", value: 4 },
+      { text: "Less is more.", value: 1 },
     ]
   },
   {
     question: "How do you measure success in design?",
     options: [
       { text: "Simplicity and usability.", value: 1 },
-      { text: "Originality and bold impact.", value: 2 },
-      { text: "User satisfaction and emotional resonance.", value: 3 },
       { text: "Flawlessness and attention to detail.", value: 4 },
+      { text: "User satisfaction and emotional resonance.", value: 3 },
+      { text: "Originality and bold impact.", value: 2 },
     ]
   },
   {
     question: "What’s your ideal design process?",
     options: [
-      { text: "Focus on the essentials and eliminate noise.", value: 1 },
       { text: "Experiment and iterate to find groundbreaking ideas.", value: 2 },
       { text: "Build empathy for the user at every step.", value: 3 },
+      { text: "Focus on the essentials and eliminate noise.", value: 1 },
       { text: "Refine and polish until everything is perfect.", value: 4 },
     ]
   },
   {
     question: "What inspires your designs?",
     options: [
-      { text: "Clean lines and purposeful design.", value: 1 },
-      { text: "Future trends and bold concepts.", value: 2 },
       { text: "People and their stories.", value: 3 },
+      { text: "Clean lines and purposeful design.", value: 1 },
       { text: "Immaculate craftsmanship and quality.", value: 4 },
+      { text: "Future trends and bold concepts.", value: 2 },
     ]
   },
   {
     question: "How do you approach problem-solving in design?",
     options: [
-      { text: "Strip everything down to the essentials.", value: 1 },
       { text: "Explore unconventional solutions and push boundaries.", value: 2 },
-      { text: "Think about how the user experiences the problem.", value: 3 },
+      { text: "Strip everything down to the essentials.", value: 1 },
       { text: "Analyze every detail meticulously before deciding.", value: 4 },
+      { text: "Think about how the user experiences the problem.", value: 3 },
     ]
   },
   {
     question: "Which of these design tools or methods do you gravitate towards?",
     options: [
-      { text: "Grids, whitespace, and clean typography.", value: 1 },
-      { text: "Sketching wild concepts and brainstorming disruptive ideas.", value: 2 },
-      { text: "User research, journey mapping, and feedback loops.", value: 3 },
       { text: "Precision tools, pixel-perfect adjustments, and refinement.", value: 4 },
+      { text: "Sketching wild concepts and brainstorming disruptive ideas.", value: 2 },
+      { text: "Grids, whitespace, and clean typography.", value: 1 },
+      { text: "User research, journey mapping, and feedback loops.", value: 3 },
     ]
   },
   {
     question: "What’s your biggest strength as a designer?",
     options: [
-      { text: "Simplicity and clarity.", value: 1 },
-      { text: "Innovation and bold thinking.", value: 2 },
-      { text: "Deep understanding of user needs.", value: 3 },
       { text: "Detail-oriented perfection.", value: 4 },
+      { text: "Innovation and bold thinking.", value: 2 },
+      { text: "Simplicity and clarity.", value: 1 },
+      { text: "Deep understanding of user needs.", value: 3 },
     ]
   },
   {
@@ -93,6 +93,12 @@ const questions = ref([
     ]
   }
 ]);
+const generateRandomAnswers = () => {
+  const options = [1, 2, 3, 4];
+  answers.value = Array.from({ length: questions.value.length }, () =>
+      options[Math.floor(Math.random() * options.length)]
+  );
+};
 
 const currentQuestionIndex = ref(0);
 const answers = ref<Array<number | null>>(new Array(questions.value.length).fill(null));
@@ -101,15 +107,19 @@ const result = ref<number | undefined>(undefined);
 
 onMounted(() => {
   fetchImage();
-  const storedAnswers = localStorage.getItem('quizAnswers');
-  if (storedAnswers) {
-    answers.value = JSON.parse(storedAnswers);
-    const storedIndex = localStorage.getItem('currentQuestionIndex');
-    if (storedIndex) {
-      currentQuestionIndex.value = parseInt(storedIndex);
+  const storedAnswers = JSON.parse(localStorage.getItem('quizAnswers') || 'null');
+  const storedIndex = parseInt(localStorage.getItem('currentQuestionIndex') || '');
+
+  if (storedAnswers && Array.isArray(storedAnswers)) {
+    answers.value = storedAnswers;
+    if (!isNaN(storedIndex)) {
+      currentQuestionIndex.value = storedIndex;
+    } else {
+      generateRandomAnswers()
     }
   }
 });
+
 
 const storeProgress = () => {
   localStorage.setItem('quizAnswers', JSON.stringify(answers.value));

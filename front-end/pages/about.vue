@@ -69,7 +69,15 @@
         </p>
       </div>
     </div>
+    <div class="w-full md:w-2/3 mx-auto mb-4">
+      <h3 class="text-2xl font-semibold mb-4">SEO optimization</h3>
+      <div class="flex flex-wrap gap-4">
+        <p>
+          The project is optimized for search engines using best practices such as semantic HTML, meta tags, and structured data.
+          This ensures that the content is easily discoverable and indexable by search engines, improving visibility and reach.
+        </p>
+        <img src="https://cdn.discordapp.com/attachments/908819758974140467/1356057134466600989/image.png?ex=67f0741f&is=67ef229f&hm=4b51a081abe52e7b85c81ecc543b28f5b8635df90c3c58f74789dbf3538aca2a&" class="w-full mx-auto rounded-lg" />
+      </div>
+    </div>
   </div>
 </template>
-<script setup lang="ts">
-</script>
